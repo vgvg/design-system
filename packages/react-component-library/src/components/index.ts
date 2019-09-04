@@ -14,6 +14,7 @@ import Tab from './TabSet/Tab'
 import TabSet from './TabSet'
 import TabNav from './TabNav'
 import TextInput from './TextInput'
+import Toggle from './Toggle'
 
 export {
   Avatar,
@@ -32,4 +33,5 @@ export {
   TabSet,
   TabNav,
   TextInput,
+  Toggle
 }

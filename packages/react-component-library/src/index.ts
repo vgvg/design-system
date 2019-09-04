@@ -13,6 +13,7 @@ import Radio from './components/Radio'
 import Tab from './components/TabSet/Tab'
 import TabSet from './components/TabSet'
 import TextInput from './components/TextInput'
+import Toggle from './components/Toggle'
 
 // Icons
 import * as Icons from './icons'
@@ -35,6 +36,7 @@ export {
   Tab,
   TabSet,
   TextInput,
+  Toggle,
 
   Icons,
 
