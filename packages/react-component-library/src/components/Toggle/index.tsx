@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import uuid from 'uuid'
 
 interface ToggleProps {
   className?: string
@@ -21,6 +22,8 @@ const Toggle: React.FC<ToggleProps> = ({
 }) => {
   const [checked, setChecked] = useState(false)
 
+  const id: string = uuid()
+
   const classes = `
     rn-toggle
     ${checked ? 'not-checked' : 'is-checked'}
@@ -29,8 +32,9 @@ const Toggle: React.FC<ToggleProps> = ({
   `
 
   return (
-    <label className={classes}>
+    <label className={classes} htmlFor={id}>
       <input
+        id={id}
         className="rn-toggle__input"
         type="checkbox"
         checked={checked}
