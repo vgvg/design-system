@@ -1,0 +1,14 @@
+.#{$helper-ns} {
+  &float-left {
+    float: left;
+  }
+  &float-none {
+    float: none;
+  }
+  &float-right {
+    float: right;
+  }
+  &cf {
+    @include clearfix;
+  }
+}
