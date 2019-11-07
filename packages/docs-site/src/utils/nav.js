@@ -22,20 +22,20 @@ export function stripLeadingSlash(href) {
 
 /**
  * Restructure nodes into something that can be more
- * easily consumed by the application (+ filter root).
+ * easily consumed by the application (+ filter).
  *
  * @param {array} nodes
  * @returns {array}
  */
 export function restructureNodes(nodes) {
   return nodes
+    .filter(node => !node.node.frontmatter.excludeFromNavigation)
     .map(node => {
       return {
         href: stripTrailingSlash(node.node.fields.slug),
         label: node.node.frontmatter.title,
       }
     })
-    .filter(node => node.href !== '/')
 }
 
 /**
