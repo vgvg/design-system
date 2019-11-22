@@ -17,7 +17,7 @@ import {
 interface PopoverProps
   extends Omit<FloatingBoxProps, 'onMouseEnter' | 'onMouseLeave'> {
   children: React.ReactElement
-  popoverJSX: React.ReactElement
+  content: React.ReactElement
   scheme?: FLOATING_BOX_SCHEME.LIGHT | FLOATING_BOX_SCHEME.DARK
   placement:
     | POPOVER_PLACEMENT.ABOVE
@@ -29,7 +29,7 @@ interface PopoverProps
 export const Popover: React.FC<PopoverProps> = ({
   className,
   children,
-  popoverJSX,
+  content,
   scheme = FLOATING_BOX_SCHEME.LIGHT,
   placement = POPOVER_PLACEMENT.BELOW,
   ...rest
@@ -86,7 +86,7 @@ export const Popover: React.FC<PopoverProps> = ({
             scheme={scheme}
             {...rest}
           >
-            {popoverJSX}
+            {content}
           </FloatingBox>
         )}
       />
