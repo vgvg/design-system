@@ -68,25 +68,29 @@ export const Popover: React.FC<PopoverProps> = ({
   }
 
   return (
-    <TetherComponent
-      offset={PLACEMENTS.OFFSET}
-      attachment={PLACEMENTS.ATTACHMENT}
-      targetAttachment={PLACEMENTS.TARGET_ATTACHMENT}
-      renderTarget={ref => renderTarget(ref)}
-      renderElement={ref => (
-        <FloatingBox
-          ref={ref}
-          className={classes}
-          onMouseEnter={handleOnMouseEnter}
-          onMouseLeave={handleOnMouseLeave}
-          position={PLACEMENTS.ARROW_POSITION}
-          scheme={scheme}
-          {...rest}
-        >
-          {popoverJSX}
-        </FloatingBox>
-      )}
-    />
+    <>
+      {/* https://github.com/Microsoft/TypeScript/issues/27552#issuecomment-495830020
+      // @ts-ignore */}
+      <TetherComponent
+        offset={PLACEMENTS.OFFSET}
+        attachment={PLACEMENTS.ATTACHMENT}
+        targetAttachment={PLACEMENTS.TARGET_ATTACHMENT}
+        renderTarget={ref => renderTarget(ref)}
+        renderElement={ref => (
+          <FloatingBox
+            ref={ref}
+            className={classes}
+            onMouseEnter={handleOnMouseEnter}
+            onMouseLeave={handleOnMouseLeave}
+            position={PLACEMENTS.ARROW_POSITION}
+            scheme={scheme}
+            {...rest}
+          >
+            {popoverJSX}
+          </FloatingBox>
+        )}
+      />
+    </>
   )
 }
 
