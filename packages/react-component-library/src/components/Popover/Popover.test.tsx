@@ -22,7 +22,7 @@ describe('Popover', () => {
       children = <pre>This is some arbitrary JSX</pre>
 
       wrapper = render(
-        <Popover placement={POPOVER_PLACEMENT.BELOW} popoverJSX={children}>
+        <Popover placement={POPOVER_PLACEMENT.BELOW} content={children}>
           <div
             style={{
               display: 'inline-block',
@@ -69,7 +69,7 @@ describe('Popover', () => {
         wrapper = render(
           <Popover
             placement={POPOVER_PLACEMENT.BELOW}
-            popoverJSX={children}
+            content={children}
             scheme={FLOATING_BOX_SCHEME.DARK}
           >
             <div
