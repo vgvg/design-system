@@ -51,10 +51,12 @@ export const FloatingBox = forwardRef(
       left,
     }
 
-    const classes = classNames('rn-floating-box', className, {
-      [`rn-floating-box--${scheme}`]: true,
-      [`rn-floating-box--${position}`]: true,
-    })
+    const classes = classNames(
+      'rn-floating-box',
+      className,
+      `rn-floating-box--${scheme}`,
+      `rn-floating-box--${position}`
+    )
 
     return (
       <div
