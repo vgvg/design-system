@@ -57,7 +57,7 @@ export const Popover: React.FC<PopoverProps> = ({
     }, POPOVER_CLOSE_DELAY)
   }
 
-  function renderTarget(ref: React.Ref<any>) {
+  function renderTarget(ref: React.RefObject<HTMLElement>) {
     return React.Children.map(children, (item: React.ReactElement) =>
       React.cloneElement(item, {
         onMouseEnter: handleOnMouseEnter,
