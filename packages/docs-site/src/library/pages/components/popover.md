@@ -12,7 +12,7 @@ import SketchWidget from '../../../components/presenters/sketch-widget'
 
 # Overview
 
-A popover is a self-contained modal or dialogue that appears in context next to a trigger element. It contains more content that a tooltip, but is directly related to a trigger element in the same way as a tooltip.
+A popover is a self-contained modal or dialogue that appears in context next to a trigger element. It contains more content than a tooltip, but is directly related to a trigger element in the same way as a tooltip.
 
 ## Usage
 
@@ -24,7 +24,7 @@ A popover is a self-contained modal or dialogue that appears in context next to 
 </Tab>
 <Tab title="Develop">
 
-A popover is a self-contained modal or dialogue that appears in context next to a trigger element. It contains more content that a tooltip, but is directly related to a trigger element in the same way as a tooltip.
+A popover is a self-contained modal or dialogue that appears in context next to a trigger element. It contains more content than a tooltip, but is directly related to a trigger element in the same way as a tooltip.
 
 ### Basic Usage
 
