@@ -1,17 +1,18 @@
 import React, { useState, useRef } from 'react'
 import classNames from 'classnames'
+import TetherComponent from 'react-tether'
 
-import { POPOVER_CLOSE_DELAY } from './constants'
+import {
+  POPOVER_CLOSE_DELAY,
+  POPOVER_PLACEMENT,
+  POPOVER_PLACEMENTS,
+} from './constants'
 
 import {
   FloatingBox,
   FloatingBoxProps,
   FLOATING_BOX_SCHEME,
-  FLOATING_BOX_PLACEMENT,
-  FLOATING_BOX_PLACEMENT_ARROW_POSITION_MAP,
 } from '../../primitives/FloatingBox'
-
-import { calculate } from './popoverPosition'
 
 interface PopoverProps
   extends Omit<FloatingBoxProps, 'onMouseEnter' | 'onMouseLeave'> {
@@ -19,10 +20,10 @@ interface PopoverProps
   popoverJSX: React.ReactElement
   scheme?: FLOATING_BOX_SCHEME.LIGHT | FLOATING_BOX_SCHEME.DARK
   placement:
-    | FLOATING_BOX_PLACEMENT.ABOVE
-    | FLOATING_BOX_PLACEMENT.BELOW
-    | FLOATING_BOX_PLACEMENT.LEFT
-    | FLOATING_BOX_PLACEMENT.RIGHT
+    | POPOVER_PLACEMENT.ABOVE
+    | POPOVER_PLACEMENT.BELOW
+    | POPOVER_PLACEMENT.LEFT
+    | POPOVER_PLACEMENT.RIGHT
 }
 
 export const Popover: React.FC<PopoverProps> = ({
@@ -30,16 +31,12 @@ export const Popover: React.FC<PopoverProps> = ({
   children,
   popoverJSX,
   scheme = FLOATING_BOX_SCHEME.LIGHT,
-  placement = FLOATING_BOX_PLACEMENT.BELOW,
+  placement = POPOVER_PLACEMENT.BELOW,
   ...rest
 }) => {
-  const [position, setPosition] = useState(null)
   const [isVisible, setIsVisible] = useState(false)
-
   const timerRef = useRef(null)
-  const popoverRef = useRef(null)
-
-  const arrowPosition = FLOATING_BOX_PLACEMENT_ARROW_POSITION_MAP[placement]
+  const PLACEMENTS = POPOVER_PLACEMENTS[placement]
 
   const classes = classNames('rn-popover', className, {
     'is-visible': isVisible,
@@ -48,11 +45,6 @@ export const Popover: React.FC<PopoverProps> = ({
   function handleOnMouseEnter(e: React.MouseEvent) {
     if (timerRef.current !== null) {
       clearTimeout(timerRef.current)
-    }
-
-    if (position === null) {
-      const element: Element = e.currentTarget
-      setPosition(calculate[placement](element, popoverRef.current))
     }
 
     setIsVisible(true)
@@ -65,31 +57,36 @@ export const Popover: React.FC<PopoverProps> = ({
     }, POPOVER_CLOSE_DELAY)
   }
 
-  function renderTarget() {
+  function renderTarget(ref: React.Ref<any>) {
     return React.Children.map(children, (item: React.ReactElement) =>
       React.cloneElement(item, {
         onMouseEnter: handleOnMouseEnter,
         onMouseLeave: handleOnMouseLeave,
+        ref,
       })
     )[0]
   }
 
   return (
-    <>
-      {renderTarget()}
-      <FloatingBox
-        ref={popoverRef}
-        className={classes}
-        onMouseEnter={handleOnMouseEnter}
-        onMouseLeave={handleOnMouseLeave}
-        position={arrowPosition}
-        scheme={scheme}
-        {...position}
-        {...rest}
-      >
-        {popoverJSX}
-      </FloatingBox>
-    </>
+    <TetherComponent
+      offset={PLACEMENTS.OFFSET}
+      attachment={PLACEMENTS.ATTACHMENT}
+      targetAttachment={PLACEMENTS.TARGET_ATTACHMENT}
+      renderTarget={ref => renderTarget(ref)}
+      renderElement={ref => (
+        <FloatingBox
+          ref={ref}
+          className={classes}
+          onMouseEnter={handleOnMouseEnter}
+          onMouseLeave={handleOnMouseLeave}
+          position={PLACEMENTS.ARROW_POSITION}
+          scheme={scheme}
+          {...rest}
+        >
+          {popoverJSX}
+        </FloatingBox>
+      )}
+    />
   )
 }
 

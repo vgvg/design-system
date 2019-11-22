@@ -10,11 +10,8 @@ import {
 } from '@testing-library/react'
 
 import { Popover } from '.'
-
-import {
-  FLOATING_BOX_PLACEMENT,
-  FLOATING_BOX_SCHEME,
-} from '../../primitives/FloatingBox'
+import { POPOVER_PLACEMENT } from './constants'
+import { FLOATING_BOX_SCHEME } from '../../primitives/FloatingBox'
 
 describe('Popover', () => {
   let wrapper: RenderResult
@@ -25,7 +22,7 @@ describe('Popover', () => {
       children = <pre>This is some arbitrary JSX</pre>
 
       wrapper = render(
-        <Popover placement={FLOATING_BOX_PLACEMENT.BELOW} popoverJSX={children}>
+        <Popover placement={POPOVER_PLACEMENT.BELOW} popoverJSX={children}>
           <div
             style={{
               display: 'inline-block',
@@ -71,7 +68,7 @@ describe('Popover', () => {
 
         wrapper = render(
           <Popover
-            placement={FLOATING_BOX_PLACEMENT.BELOW}
+            placement={POPOVER_PLACEMENT.BELOW}
             popoverJSX={children}
             scheme={FLOATING_BOX_SCHEME.DARK}
           >
