@@ -58,6 +58,19 @@ describe('Popover', () => {
           'rn-floating-box--light'
         )
       })
+
+      describe('and the user unhovers from the target element', () => {
+        beforeEach(() => {
+          fireEvent.mouseLeave(wrapper.getByText('Hover on me!'))
+          jest.runAllTimers()
+        })
+
+        it('to not be visible to the end user', () => {
+          expect(wrapper.getByTestId('floating-box').classList).not.toContain(
+            'is-visible'
+          )
+        })
+      })
     })
 
     describe('where the scheme prop is supplied', () => {
