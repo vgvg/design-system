@@ -5,16 +5,32 @@ import Links from '../Links'
 
 import './footer.scss'
 
+<<<<<<< HEAD
 import MonoLogo from './images/Logo'
+=======
+import MonoLogo from './logo.svg'
+import GitHubLogo from './images/github-logo.svg'
+>>>>>>> Add github logo with link to header and footer of docs site
 
 const Footer = ({ children, links }) => (
   <div className="rn-footer">
     <div className="rn-container">
       <div className="rn-footer__content">
-        <MonoLogo />
+        <div>
+          <MonoLogo />
+          <div className="rn-footer__git">
+            <a
+              href="https://github.com/Royal-Navy/standards-toolkit"
+              target="blank"
+            >
+              <GitHubLogo className="h_w-8 h_h-8" />
+            </a>
+          </div>
+        </div>
         <Links links={links} />
       </div>
     </div>
+
     <div className="rn-footer__meta">
       <div className="rn-container">
         <p data-testid="message" className="rn-footer__message">

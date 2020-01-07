@@ -8,8 +8,13 @@ import {
   PhaseBanner,
 } from '@royalnavy/react-component-library'
 
+<<<<<<< HEAD
 import packageJson from '../../../../package'
 import SiteLogo from './images/SiteLogo'
+=======
+import SiteLogo from './images/site-logo.svg'
+import GitHubLogo from './images/github-logo.svg'
+>>>>>>> Add github logo with link to header and footer of docs site
 
 import './masthead.scss'
 
@@ -30,6 +35,14 @@ const MastHead = ({ navItems }) => {
         <a href="/">
           <SiteLogo className="masthead__logo" />
         </a>
+        <div>
+          <a
+            href="https://github.com/Royal-Navy/standards-toolkit"
+            target="blank"
+          >
+            <GitHubLogo className="h_w-6 h_h-6 h_mt-2" />
+          </a>
+        </div>
 
         <div className="masthead__version">
           <a href="/versions">
@@ -55,6 +68,7 @@ const MastHead = ({ navItems }) => {
           us to improve it.
         </span>
       </PhaseBanner>
+
       {hasNavItems && (
         <div
           data-testid="primary-nav"
