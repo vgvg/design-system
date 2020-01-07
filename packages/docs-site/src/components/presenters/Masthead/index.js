@@ -8,13 +8,9 @@ import {
   PhaseBanner,
 } from '@royalnavy/react-component-library'
 
-<<<<<<< HEAD
 import packageJson from '../../../../package'
-import SiteLogo from './images/SiteLogo'
-=======
 import SiteLogo from './images/site-logo.svg'
 import GitHubLogo from './images/github-logo.svg'
->>>>>>> Add github logo with link to header and footer of docs site
 
 import './masthead.scss'
 

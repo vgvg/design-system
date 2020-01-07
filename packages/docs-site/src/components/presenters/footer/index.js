@@ -5,12 +5,8 @@ import Links from '../Links'
 
 import './footer.scss'
 
-<<<<<<< HEAD
-import MonoLogo from './images/Logo'
-=======
-import MonoLogo from './logo.svg'
+import MonoLogo from './images/logo.svg'
 import GitHubLogo from './images/github-logo.svg'
->>>>>>> Add github logo with link to header and footer of docs site
 
 const Footer = ({ children, links }) => (
   <div className="rn-footer">
