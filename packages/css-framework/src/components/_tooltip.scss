@@ -13,8 +13,9 @@ $tooltipOffset: $tooltipOuter + $tooltipBorderThick;
 }
 
 .rn-tooltip__message {
-  font-size: f.font-size("base");
+  font-size: f.font-size("s");
   color: f.color("neutral", "100");
+  line-height: 1.4;
 }
 
 .rn-tooltip__content {
@@ -22,7 +23,7 @@ $tooltipOffset: $tooltipOuter + $tooltipBorderThick;
   background: $tooltipDarkBackground;
   color: f.color("neutral", "white");
   border: $tooltipDarkBorder solid $tooltipBorderThick;
-  border-radius: 5px;
+  border-radius: 4px;
   padding: f.spacing("3");
   position: relative;
   top: auto;
@@ -33,6 +34,7 @@ $tooltipOffset: $tooltipOuter + $tooltipBorderThick;
 
 .rn-tooltip__title {
   padding-bottom: f.spacing("1");
+  font-size: f.font-size("base");
 }
 
 .rn-tooltip__content:before {
