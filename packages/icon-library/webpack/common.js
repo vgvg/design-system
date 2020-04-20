@@ -3,11 +3,11 @@ const { resolve } = require('path')
 
 module.exports = {
   target: 'node',
-  entry: ['./index.ts'],
+  entry: ['./index.tsx'],
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
-  context: resolve(__dirname, '../src'),
+  context: resolve(__dirname, '../src/icons'),
   module: {
     rules: [
       {
