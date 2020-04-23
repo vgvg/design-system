@@ -27,7 +27,7 @@ export const TimelineRows: React.FC<TimelineRowsProps> = ({ children, className 
   )
 
   const hasChildren = childrenWithKey && childrenWithKey.length
-  
+
   return (
     <main className={classes}>
       {hasChildren ? childrenWithKey : noData}
