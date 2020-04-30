@@ -6,6 +6,7 @@ import {
   TimelineRootComponent,
   TimelineHeadComponent,
   TimelineBodyComponent,
+  TimelineComponent,
 } from './types'
 
 import {
@@ -15,53 +16,50 @@ import {
   TimelineMonths,
   TimelineTodayMarker,
   TimelineRows,
+  TimelineRowsProps,
+  TimelineTodayMarkerProps,
+  TimelineMonthsProps,
+  TimelineWeeksProps,
+  TimelineDaysProps,
+  TimelineSideProps,
 } from '.'
 
 import { TimelineOptions } from './context/types'
 import { DEFAULTS } from './constants'
 
+type timelineRootChildrenType = React.ReactElement<TimelineSideProps>
+
+type timelineHeadChildrenType =
+  | React.ReactElement<TimelineTodayMarkerProps>
+  | React.ReactElement<TimelineMonthsProps>
+  | React.ReactElement<TimelineWeeksProps>
+  | React.ReactElement<TimelineDaysProps>
+
+type timelineBodyChildrenType = React.ReactElement<TimelineRowsProps>
+
+type timelineChildrenType =
+  | timelineRootChildrenType
+  | timelineHeadChildrenType
+  | timelineBodyChildrenType
+
 export interface TimelineProps extends ComponentWithClass {
-  children: React.ReactElement | React.ReactElement[]
+  children: timelineChildrenType | timelineChildrenType[]
   dayWidth?: number
   startDate?: Date
   today?: Date
 }
 
-function isRootComponent(item: React.ReactNode): item is TimelineRootComponent {
-  const type = (item as TimelineRootComponent)?.type?.name ?? ''
+function isComponentOf<T extends TimelineComponent>(item: T, names: string[]) {
+  const typeName = (item as T)?.type?.name ?? ''
 
-  return type === TimelineSide.name
+  return names.includes(typeName)
 }
 
-function isHeadComponent(item: React.ReactNode): item is TimelineHeadComponent {
-  const type = (item as TimelineHeadComponent)?.type?.name ?? ''
-
-  return [
-    TimelineDays.name,
-    TimelineWeeks.name,
-    TimelineMonths.name,
-    TimelineTodayMarker.name,
-  ].includes(type)
-}
-
-function isBodyComponent(item: React.ReactNode): item is TimelineBodyComponent {
-  const type = (item as TimelineBodyComponent)?.type?.name ?? ''
-
-  return type === TimelineRows.name
-}
-
-function extractChildren(
-  children: React.ReactElement | React.ReactElement[],
-  typeGuard: (item: React.ReactNode) => boolean,
-  props?: { [key: string]: any }
+function extractChildrenOf<T>(
+  children: timelineChildrenType | timelineChildrenType[],
+  names: string[]
 ) {
-  return React.Children.map(children, (child: React.ReactElement) => {
-    if (typeGuard(child)) {
-      return React.cloneElement(child as React.ReactElement, props)
-    }
-
-    return null
-  })
+  return (children as []).filter(child => isComponentOf(child, names))
 }
 
 export const Timeline: React.FC<TimelineProps> = ({
@@ -75,9 +73,18 @@ export const Timeline: React.FC<TimelineProps> = ({
     rangeInMonths: DEFAULTS.RANGE_IN_MONTHS,
   }
 
-  const rootChildren = extractChildren(children, isRootComponent)
-  const headerChildren = extractChildren(children, isHeadComponent)
-  const bodyChildren = extractChildren(children, isBodyComponent)
+  const rootChildren = extractChildrenOf<TimelineRootComponent>(children, [
+    TimelineSide.name,
+  ])
+  const headerChildren = extractChildrenOf<TimelineHeadComponent>(children, [
+    TimelineDays.name,
+    TimelineWeeks.name,
+    TimelineMonths.name,
+    TimelineTodayMarker.name,
+  ])
+  const bodyChildren = extractChildrenOf<TimelineBodyComponent>(children, [
+    TimelineRows.name,
+  ])
 
   return (
     <TimelineProvider startDate={startDate} today={today} options={options}>

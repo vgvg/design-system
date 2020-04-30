@@ -1,10 +1,18 @@
-export interface TimelineRootComponent {
+import { TimelineSide } from '.'
+
+export interface TimelineComponent {
+  type: {
+    name: string
+  }
+}
+
+export interface TimelineRootComponent extends TimelineComponent {
   type: {
     name: 'TimelineSide'
   }
 }
 
-export interface TimelineHeadComponent {
+export interface TimelineHeadComponent extends TimelineComponent {
   type: {
     name:
       | 'TimelineTodayMarker'
@@ -14,7 +22,7 @@ export interface TimelineHeadComponent {
   }
 }
 
-export interface TimelineBodyComponent {
+export interface TimelineBodyComponent extends TimelineComponent {
   type: {
     name: 'TimelineRows'
   }
