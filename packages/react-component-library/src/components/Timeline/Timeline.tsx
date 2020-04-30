@@ -49,7 +49,10 @@ export interface TimelineProps extends ComponentWithClass {
   today?: Date
 }
 
-function isComponentOf<T extends TimelineComponent>(item: T, names: string[]) {
+function isComponentOf<T extends TimelineComponent>(
+  item: T,
+  names: string[]
+): item is T {
   const typeName = (item as T)?.type?.name ?? ''
 
   return names.includes(typeName)
