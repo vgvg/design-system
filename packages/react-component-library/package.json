@@ -133,6 +133,7 @@
   "dependencies": {
     "@datepicker-react/hooks": "^2.3.1",
     "@royalnavy/css-framework": "^2.8.0-alpha.24",
+    "@royalnavy/eslint-config-react": "^2.7.0",
     "@royalnavy/fonts": "^2.8.0-alpha.24",
     "@royalnavy/icon-library": "^2.8.0-alpha.24",
     "@types/react-responsive": "^8.0.2",
